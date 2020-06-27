@@ -12,6 +12,7 @@ class Node:
     def set_next(self, new_next):
         self.next_node = new_next
 
+
 class LinkedList:
     def __init__(self):
         self.head = None
@@ -38,5 +39,34 @@ class LinkedList:
 
         return False
 
-    def reverse_list(self, node, prev):
-        pass
+    def printer(self):
+        current_node = self.head
+        while current_node is not None:
+            print(current_node.value)
+            current_node = current_node.next_node
+
+    def reverse_list(self, node, prev=None):
+        if node is None:
+            self.head = prev
+            return
+        if node is self.head and node.next_node is None:
+            return node
+        if node is not None:
+            current_node = node
+            next_one = current_node.next_node
+            current_node.next_node = prev
+            prev = current_node
+            self.reverse_list(next_one, prev)
+
+
+# xer = LinkedList()
+# xer.add_to_head(1)
+# xer.add_to_head(2)
+# xer.add_to_head(3)
+# xer.add_to_head(4)
+# xer.add_to_head(5)
+
+# xer.printer()
+# xer.reverse_list(xer.head, None)
+
+# xer.printer()
